@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => MyHomePage(),
-        '/paginafutbol': (context) => const PaginaFutbol(),
+        '/paginafutbol': (context) => PaginaFutbol(),
         '/paginabasket': (context) => const PaginaBasket(),
         '/listviewjugfut': (context) => ListviewJugFut(),
         '/listviewjugbas': (context) => ListviewJugBas(),
