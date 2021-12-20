@@ -23,7 +23,23 @@ class PaginaFutbol extends StatelessWidget {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   } else {
-                    return _Listausuarios(snapshot.data);
+                    final users = snapshot.data!["data"] as List;
+
+                    List<Widget> widgetUsers = users.map((usuario) {
+                      return ListTile(
+                        leading: Icon(Icons.verified_user),
+                        title: Text(usuario['first_name']),
+                        textColor: Colors.black,
+                        subtitle: Text(usuario['email']),
+                        trailing: Image.network(usuario['avatar']),
+                      );
+                    }).toList();
+
+                    return Expanded(
+                      child: ListView(
+                        children: widgetUsers,
+                      ),
+                    );
                   }
                 },
               ),
@@ -45,21 +61,5 @@ class PaginaFutbol extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class _Listausuarios extends StatelessWidget {
-  final List<Usuario> usuarios;
-
-  const _Listausuarios(this.usuarios);
-  
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(itemCount: usuarios.length, (BuildContext context, int i) { 
-final user = usuarios[i];
-      return ListTile(
-        title:
-      )
-     },);
   }
 }
