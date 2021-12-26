@@ -3,12 +3,6 @@ import 'package:flutter/material.dart';
 class ListviewJugBas extends StatelessWidget {
   ListviewJugBas({Key? key}) : super(key: key);
 
-  //final List jugadores = [
-  //  'pepe',
-  //  'papa',
-  //  'pupu',
-  //];
-
   List<Map> jugadores = [
     {
       'nombre': 'magic',

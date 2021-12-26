@@ -19,19 +19,27 @@ class PaginaFutbol extends StatelessWidget {
             children: [
               FutureBuilder(
                 future: miUsuario.obtenerUsuarios(),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<Usuario>> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   } else {
-                    final users = snapshot.data!["data"] as List;
+                    final List<Usuario>? users = snapshot.data;
 
-                    List<Widget> widgetUsers = users.map((usuario) {
+                    List<Widget> widgetUsers = users!.map((Usuario usuario) {
                       return ListTile(
                         leading: Icon(Icons.verified_user),
-                        title: Text(usuario['first_name']),
+                        title: Text(usuario.firstname),
                         textColor: Colors.black,
-                        subtitle: Text(usuario['email']),
-                        trailing: Image.network(usuario['avatar']),
+                        //subtitle: Text(usuario.mail),
+                        trailing: Image.network(usuario.avatar),
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            '/detalle_jugadores',
+                            arguments: usuario,
+                          );
+                        },
                       );
                     }).toList();
 

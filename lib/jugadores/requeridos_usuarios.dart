@@ -1,3 +1,29 @@
+class Usuario {
+  final String firstname;
+  final String lastname;
+  final String avatar;
+  final String mail;
+
+  Usuario({
+    required this.firstname,
+    required this.lastname,
+    required this.avatar,
+    required this.mail,
+  });
+
+  factory Usuario.fromMap(Map usuario) {
+    return Usuario(
+      firstname: usuario['first_name'],
+      avatar: usuario['avatar'],
+      mail: usuario['email'],
+      lastname: usuario['last_name'],
+    );
+  }
+}
+
+
+
+/* 
 // To parse this JSON data, do
 //
 //     final reqres = reqresFromJson(jsonString);
@@ -14,7 +40,6 @@ class Reqres {
   int total;
   int totalPages;
   List<Usuario> data;
-  Support support;
 
   Reqres({
     required this.page,
@@ -22,7 +47,6 @@ class Reqres {
     required this.total,
     required this.totalPages,
     required this.data,
-    required this.support,
   });
 
   factory Reqres.fromJson(Map<String, dynamic> json) => Reqres(
@@ -31,7 +55,6 @@ class Reqres {
         total: json["total"],
         totalPages: json["total_pages"],
         data: List<Usuario>.from(json["data"].map((x) => Usuario.fromJson(x))),
-        support: Support.fromJson(json["support"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -40,7 +63,6 @@ class Reqres {
         "total": total,
         "total_pages": totalPages,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
-        "support": support.toJson(),
       };
 }
 
@@ -75,22 +97,4 @@ class Usuario {
         "avatar": avatar,
       };
 }
-
-class Support {
-  String url;
-  String text;
-
-  Support({
-    required this.url,
-    required this.text,
-  });
-  factory Support.fromJson(Map<String, dynamic> json) => Support(
-        url: json["url"],
-        text: json["text"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "url": url,
-        "text": text,
-      };
-}
+*/

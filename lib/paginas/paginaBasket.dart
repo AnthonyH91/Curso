@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-class PaginaBasket extends StatelessWidget {
-  const PaginaBasket({Key? key}) : super(key: key);
+import 'package:practicar_000/jugadores/requeridos_usuarios.dart';
+import 'package:practicar_000/widgets/controlador.dart';
 
+class PaginaBasket extends StatelessWidget {
+  PaginaBasket({Key? key}) : super(key: key);
+  Controlador miUsuario = Controlador();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +18,40 @@ class PaginaBasket extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
+              FutureBuilder(
+                future: miUsuario.obtenerUsuarios(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<Usuario>> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else {
+                    final List<Usuario>? users = snapshot.data;
+
+                    List<Widget> widgetUsers = users!.map((Usuario usuario) {
+                      return ListTile(
+                        leading: Icon(Icons.verified_user),
+                        title: Text(usuario.firstname),
+                        textColor: Colors.black,
+                        //subtitle: Text(usuario.mail),
+                        trailing: Image.network(usuario.avatar),
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            '/detalle_jugadores',
+                            arguments: usuario,
+                          );
+                        },
+                      );
+                    }).toList();
+
+                    return Expanded(
+                      child: ListView(
+                        children: widgetUsers,
+                      ),
+                    );
+                  }
+                },
+              ),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/listviewjugbas');

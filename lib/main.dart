@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practicar_000/pagina_principal.dart';
+import 'package:practicar_000/paginas/details_players.dart';
 import 'package:practicar_000/paginas/listview_jug_futbol.dart';
 import 'package:practicar_000/paginas/listview_jug_basket.dart';
 import 'package:practicar_000/paginas/paginaBasket.dart';
@@ -24,9 +25,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(),
         '/paginafutbol': (context) => PaginaFutbol(),
-        '/paginabasket': (context) => const PaginaBasket(),
+        '/paginabasket': (context) => PaginaBasket(),
         '/listviewjugfut': (context) => ListviewJugFut(),
         '/listviewjugbas': (context) => ListviewJugBas(),
+        '/detalle_jugadores': (context) => Detalle_Jugadores(),
       },
     );
   }
