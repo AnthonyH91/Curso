@@ -3,12 +3,16 @@ class Usuario {
   final String lastname;
   final String avatar;
   final String mail;
+  final int id;
+  bool favorito = false;
 
   Usuario({
     required this.firstname,
     required this.lastname,
     required this.avatar,
     required this.mail,
+    required this.favorito,
+    required this.id,
   });
 
   factory Usuario.fromMap(Map usuario) {
@@ -17,6 +21,8 @@ class Usuario {
       avatar: usuario['avatar'],
       mail: usuario['email'],
       lastname: usuario['last_name'],
+      favorito: false,
+      id: usuario['id'],
     );
   }
 }
