@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:practicar_000/paginas/paginaBasket.dart';
 import 'package:practicar_000/paginas/paginaFutbol.dart';
+import 'package:practicar_000/providers/jugadores_provider.dart';
+import 'package:provider/provider.dart';
 
 class DrawerDisen extends StatelessWidget {
   const DrawerDisen({Key? key}) : super(key: key);
@@ -17,6 +19,8 @@ class DrawerDisen extends StatelessWidget {
           ListTile(
             title: Text('Futbol'),
             onTap: () {
+              Provider.of<JugadorProvider>(context, listen: false)
+                  .obtenerUsuarios();
               Navigator.pushNamed(context, '/paginafutbol');
               //Navigator.of(context).push(
               //MaterialPageRoute(builder: (context) => PaginaFutbol()),
@@ -26,6 +30,8 @@ class DrawerDisen extends StatelessWidget {
           ListTile(
             title: Text('Basket'),
             onTap: () {
+              Provider.of<JugadorProvider>(context, listen: false)
+                  .obtenerUsuarios();
               Navigator.pushNamed(context, '/paginabasket');
 
               //Navigator.of(context).push(
@@ -46,11 +52,9 @@ class DrawerDisen extends StatelessWidget {
     return UserAccountsDrawerHeader(
       accountName: Text('Anthony'),
       accountEmail: Text('anthonyhanono@gmail.com'),
-      currentAccountPicture: GestureDetector(
-        child: CircleAvatar(
-          child: FlutterLogo(
-            size: 42.0,
-          ),
+      currentAccountPicture: CircleAvatar(
+        backgroundImage: AssetImage(
+          'assets/iconApp.png',
         ),
       ),
     );

@@ -1,10 +1,16 @@
-/*import 'dart:convert';
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:practicar_000/jugadores/requeridos_usuarios.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Controlador {
-  Future<List<Usuario>> obtenerUsuarios() async {
+class JugadorProvider extends ChangeNotifier {
+  final List<Usuario> _users = [];
+
+  List<Usuario> get users => _users;
+
+  Future/*<List<Usuario>>*/ obtenerUsuarios() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String datosAlmacenados;
 
@@ -24,7 +30,10 @@ class Controlador {
     List usuarios = mapa['data'];
     List<Usuario> listaDeJugadores =
         usuarios.map((jugador) => Usuario.fromMap(jugador)).toList();
-    return listaDeJugadores;
+    //inyectamos los usuarios dentro de provider
+    _users.clear();
+    _users.addAll(listaDeJugadores);
+    notifyListeners();
+    //return listaDeJugadores;
   }
 }
-*/

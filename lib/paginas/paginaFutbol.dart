@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:practicar_000/jugadores/requeridos_usuarios.dart';
-import 'package:practicar_000/widgets/controlador.dart';
+import 'package:practicar_000/providers/jugadores_provider.dart';
+import 'package:provider/provider.dart';
 
 class PaginaFutbol extends StatelessWidget {
   PaginaFutbol({Key? key}) : super(key: key);
-  Controlador miUsuario = Controlador();
+  //Controlador miUsuario = Controlador();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,22 +18,22 @@ class PaginaFutbol extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              FutureBuilder(
-                future: miUsuario.obtenerUsuarios(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<List<Usuario>> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else {
-                    final List<Usuario>? users = snapshot.data;
-
-                    List<Widget> widgetUsers = users!.map((Usuario usuario) {
-                      return ListTile(
+              Consumer<JugadorProvider>(
+                builder: (BuildContext context, data, _) {
+                  //consumer de tipo jugadorProvider
+                  List<Widget> widgetUsers = data.users.map((Usuario usuario) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
                         leading: Icon(Icons.verified_user),
                         title: Text(usuario.firstname),
                         textColor: Colors.black,
-                        //subtitle: Text(usuario.mail),
-                        trailing: Image.network(usuario.avatar),
+                        trailing: FadeInImage.assetNetwork(
+                          image: usuario.avatar,
+                          placeholder: "assets/loading.gif",
+                          imageCacheWidth: 50,
+                          width: 50,
+                        ),
                         onTap: () {
                           Navigator.pushNamed(
                             context,
@@ -40,15 +41,15 @@ class PaginaFutbol extends StatelessWidget {
                             arguments: usuario,
                           );
                         },
-                      );
-                    }).toList();
-
-                    return Expanded(
-                      child: ListView(
-                        children: widgetUsers,
                       ),
                     );
-                  }
+                  }).toList();
+
+                  return Expanded(
+                    child: ListView(
+                      children: widgetUsers,
+                    ),
+                  );
                 },
               ),
               ElevatedButton(
