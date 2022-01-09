@@ -6,7 +6,12 @@ class ChipDisen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ActionChip(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(
+          context,
+          '/juegoChips',
+        );
+      },
       avatar: const Icon(
         Icons.play_circle,
         //color: Colors.deepPurple,

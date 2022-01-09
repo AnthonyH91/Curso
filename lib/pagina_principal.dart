@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:practicar_000/jugadores/requeridos_usuarios.dart';
 import 'package:practicar_000/widgets/chip.dart';
 import 'package:practicar_000/widgets/drawer.dart';
 
@@ -13,10 +14,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late String? deporte = "";
+
   late String? raiz = "assets/deportes.jpg";
 
   @override
   Widget build(BuildContext context) {
+    late final Usuario args =
+        ModalRoute.of(context)?.settings.arguments as Usuario;
     return Scaffold(
       drawer: DrawerDisen(),
       appBar: AppBar(title: Text("Mi Deporte"), actions: [
@@ -58,7 +62,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   "$deporte",
                   style: const TextStyle(fontSize: 26.0, color: Colors.white),
                 ),
-                Image.asset('$raiz'),
+                GestureDetector(
+                  child: Image.asset('$raiz'),
+                  onDoubleTap: () =>
+                      Navigator.pushNamed(context, '/listviewjugfut'),
+                ),
                 const ChipDisen(),
               ]),
         ),

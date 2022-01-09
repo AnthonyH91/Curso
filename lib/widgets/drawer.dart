@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:practicar_000/paginas/paginaBasket.dart';
-import 'package:practicar_000/paginas/paginaFutbol.dart';
 import 'package:practicar_000/providers/jugadores_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -40,8 +38,12 @@ class DrawerDisen extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Rugby'),
-            onTap: () {},
+            title: Text('Mis Favoritos'),
+            onTap: () {
+              Provider.of<JugadorProvider>(context, listen: false)
+                  .obtenerUsuarios();
+              Navigator.pushNamed(context, '/paginafavoritos');
+            },
           ),
         ],
       )),
