@@ -15,7 +15,7 @@ class DrawerDisen extends StatelessWidget {
         children: [
           buildDrawerHeader(context),
           ListTile(
-            title: Text('Futbol'),
+            title: Text('Jugadores de Futbol'),
             onTap: () {
               Provider.of<JugadorProvider>(context, listen: false)
                   .obtenerUsuarios();
@@ -26,7 +26,7 @@ class DrawerDisen extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Basket'),
+            title: Text('Jugadores de Basket'),
             onTap: () {
               Provider.of<JugadorProvider>(context, listen: false)
                   .obtenerUsuarios();
@@ -38,7 +38,7 @@ class DrawerDisen extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Mis Favoritos'),
+            title: Text('Mis jugadores Favoritos'),
             onTap: () {
               Provider.of<JugadorProvider>(context, listen: false)
                   .obtenerUsuarios();

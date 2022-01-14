@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:practicar_000/jugadores/requeridos_usuarios.dart';
 import 'package:practicar_000/providers/jugadores_provider.dart';
@@ -11,12 +13,13 @@ class jugandoChips extends StatefulWidget {
 }
 
 class _jugandoChipsState extends State<jugandoChips> {
-  int bomba = 0;
-
+  int bomba = 1;
+  int ganador = Random().nextInt(11);
+  //int ganador = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text('TAP AND WIN !!')),
       backgroundColor: Colors.teal,
       body: SafeArea(
         child:
@@ -28,7 +31,22 @@ class _jugandoChipsState extends State<jugandoChips> {
                 child: ActionChip(
                   label: Text(usuario.firstname),
                   onPressed: () {
-                    if (bomba == 4) {
+                    if (ganador == 0) {
+                      ganador++;
+                    } else if (bomba == ganador) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(usuario.firstname),
+                        action: SnackBarAction(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                '/detalle_jugadores',
+                                arguments: usuario,
+                              );
+                            },
+                            label: "Details"),
+                      ));
+
                       Navigator.pushNamed(
                         context,
                         '/',
@@ -49,7 +67,8 @@ class _jugandoChipsState extends State<jugandoChips> {
                 child: ListView(
                   children: widgetUsers,
                 ),
-              )
+              ),
+              //Text(ganador.toString()),
             ],
           );
 

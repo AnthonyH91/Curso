@@ -10,7 +10,7 @@ class PaginaFutbol extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Info de Futbol'),
+        title: Text('Hall of Fame Soccer'),
         centerTitle: true,
         leading: Container(),
       ),

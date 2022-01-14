@@ -26,7 +26,7 @@ class JugadorProvider extends ChangeNotifier {
 
     try {
       Client http = Client();
-      Uri uri = Uri.parse('https://reqres.in/api/users?page=1');
+      Uri uri = Uri.parse('https://reqres.in/api/users?page=2');
       Response respuesta = await http.get(uri);
 
       prefs.setString('datos', respuesta.body); //guarda de forma local

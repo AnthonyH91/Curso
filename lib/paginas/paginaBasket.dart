@@ -10,7 +10,7 @@ class PaginaBasket extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Info de Basket'),
+        title: Text('Hall of Fame Basketball'),
         centerTitle: true,
         leading: Container(),
       ),
